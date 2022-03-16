@@ -10,7 +10,7 @@ import io
 
 app = FastAPI()
 
-model_path = ("/home/dhaivat/PycharmProjects/SIH/model.json")
+model_path = (r"C:\Users\dvipa\OneDrive\Desktop\Posaidon\Species_Classfier.json")
 
 model = load_model(model_path)
 
@@ -22,7 +22,7 @@ def Hello_World():
 async def predict (file : UploadFile = File(...)):
     contents = await file.read()
     pil_image = Image.open(io.BytesIO(contents))
-    pil_image = pil_image.resize((64, 64))
+    pil_image = pil_image.resize((200, 200))
     print("resize done")
     i = img_to_array(pil_image)
     i = preprocess_input(i)
