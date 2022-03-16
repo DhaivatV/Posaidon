@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
 from fastapi import UploadFile, File
-from keras.preprocessing.image import img_to_array
 from keras.applications.inception_v3 import preprocess_input
 from keras.models import load_model
 from PIL import Image
@@ -24,7 +23,7 @@ async def predict (file : UploadFile = File(...)):
     pil_image = Image.open(io.BytesIO(contents))
     pil_image = pil_image.resize((200, 200))
     print("resize done")
-    i = img_to_array(pil_image)
+    i = np.asarray(pil_image)
     i = preprocess_input(i)
     input_arr = np.array([i])
     print("array made")
