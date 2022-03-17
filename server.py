@@ -9,8 +9,20 @@ import io
 from tensorflow.python import tf2
 from pickle import load
 
+from fastapi.middleware.cors import CORSMiddleware
+
+
 app = FastAPI()
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 model_path = (r"C:\Users\dvipa\OneDrive\Desktop\Posaidon\Species_Classfier.h5")
 
 model = load_model("Species_Classfier.h5")
