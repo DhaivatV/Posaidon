@@ -6,12 +6,14 @@ from keras.models import load_model
 from PIL import Image
 import numpy as np
 import io
+from tensorflow.python import tf2
+from pickle import load
 
 app = FastAPI()
 
-model_path = (r"C:\Users\dvipa\OneDrive\Desktop\Posaidon\Species_Classfier.json")
+model_path = (r"C:\Users\dvipa\OneDrive\Desktop\Posaidon\Species_Classfier.h5")
 
-model = load_model(model_path)
+model = load_model("Species_Classfier.h5")
 
 @app.get("/")
 def Hello_World():
